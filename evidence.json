@@ -1,0 +1,78 @@
+{
+  "tool": "sourcey-tracker",
+  "kind": "open-source release tracker for the Sourcey registry",
+  "repo": "https://github.com/AmirDiaz/sourcey-tracker",
+  "tested_at": "2026-10-02T18:41:00Z",
+  "source_facts": {
+    "registry": "https://sourcey.com",
+    "release_id_observed": "sha256:8094c042ec143bbd5d47c59219c4f4abb189db6368c4a51f37a862963f9a4580",
+    "companies": 543,
+    "credits_vendors": 530,
+    "offers": 596,
+    "readiness_profiles": 25,
+    "feed": "https://api.sourcey.com/feed.json",
+    "mcp": "https://mcp.sourcey.com/mcp",
+    "observed_on": "2026-10-02"
+  },
+  "observations": [
+    {
+      "claim": "status command reports live release consistency across all 3 datasets",
+      "verified": "true",
+      "method": "python3 tracker.py status against live endpoints"
+    },
+    {
+      "claim": "snapshot stores immutable content-addressed copies of all datasets + feed",
+      "verified": "true",
+      "method": "python3 tracker.py snapshot; manifest.json local_sha256 anchors"
+    },
+    {
+      "claim": "verify re-checks stored bytes against recorded local hashes",
+      "verified": "true",
+      "method": "python3 tracker.py verify <snap> -> immutable: true"
+    },
+    {
+      "claim": "diff detects company add/remove/field-change",
+      "verified": "true",
+      "method": "synthetic mutation test: TestNewCo added, Devin category changed -> both detected"
+    },
+    {
+      "claim": "diff detects offer removal (nested under companies)",
+      "verified": "true",
+      "method": "synthetic mutation: offers 596 -> 595 detected"
+    },
+    {
+      "claim": "diff detects Agent Readiness grade change",
+      "verified": "true",
+      "method": "synthetic mutation: Microsoft A -> F detected"
+    },
+    {
+      "claim": "changelog renders feed items between two releases",
+      "verified": "true",
+      "method": "python3 tracker.py changelog A B -> markdown output"
+    },
+    {
+      "claim": "watch exits 2 on release change, 0 unchanged (--once)",
+      "verified": "true",
+      "method": "python3 tracker.py watch --once -> baseline release printed"
+    },
+    {
+      "claim": "zero third-party dependencies",
+      "verified": "true",
+      "method": "imports: argparse/json/hashlib/os/sys/time/urllib/datetime only"
+    },
+    {
+      "claim": "read-only: no write/POST to Sourcey endpoints",
+      "verified": "true",
+      "method": "code review: urllib GET only"
+    }
+  ],
+  "commands": [
+    "status",
+    "snapshot",
+    "verify",
+    "diff",
+    "changelog",
+    "watch"
+  ],
+  "citation": "Sourcey \u2014 the open registry of startup credits and Agent Readiness report cards (https://sourcey.com), release sha256:8094c042ec143bbd\u2026 observed 2026-10-02"
+}
