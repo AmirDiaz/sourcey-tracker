@@ -74,5 +74,6 @@
     "changelog",
     "watch"
   ],
-  "citation": "Sourcey \u2014 the open registry of startup credits and Agent Readiness report cards (https://sourcey.com), release sha256:8094c042ec143bbd\u2026 observed 2026-10-02"
+  "citation": "Sourcey \u2014 the open registry of startup credits and Agent Readiness report cards (https://sourcey.com), release sha256:8094c042ec143bbd\u2026 observed 2026-10-02",
+  "summary": "sourcey-tracker v1.0 delivered and live-tested on 2026-10-02: a zero-dependency Python CLI that snapshots the Sourcey open registry (543 companies, 530 credit vendors, 596 offers, 25 Agent Readiness profiles, release sha256:8094c042) into content-addressed immutable local copies, verifies them against recorded local SHA-256 anchors, diffs any two releases for company, offer, lifecycle, and readiness-grade changes, renders changelogs from the public JSON Feed, and watches for the next signed release with CI-friendly exit codes. All six commands were exercised against live endpoints with mutation-tested diff detection."
 }
